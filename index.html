@@ -102,6 +102,7 @@ footer{background:var(--panel);border-top:1px solid var(--border);padding:8px 16
   <h1 id="title-zh">國共內戰互動歷史地圖</h1>
   <span class="sub" id="title-yr">1927–1949</span>
   <div class="btns">
+    <button class="btn" id="narratebtn">🔊 旁白</button>
     <button class="btn" id="langbtn">EN</button>
     <button class="btn" id="namebtn">俗稱</button>
     <button class="btn" id="aboutbtn">關於</button>
@@ -384,6 +385,7 @@ title:{zh:"國共內戰互動歷史地圖",en:"Chinese Civil War — Interactive
 play:{zh:"▶",en:"▶"},pause:{zh:"⏸",en:"⏸"},
 namebtn:{hist:{zh:"史實",en:"Historical"},pop:{zh:"俗稱",en:"Common names"}},
 about:{zh:"關於",en:"About"},
+narrateOn:{zh:"🔊 旁白",en:"🔊 Narration"},narrateOff:{zh:"🔇 旁白",en:"🔇 Narration"},
 legend:[["kmt",{zh:"國民政府控制區",en:"Nationalist control"}],["ccp",{zh:"中共控制區／根據地",en:"Communist control / bases"}],["jp",{zh:"日軍佔領區",en:"Japanese-occupied"}],["warlord",{zh:"北洋／地方軍閥",en:"Warlords"}],["contested",{zh:"激戰／易手中",en:"Contested"}]],
 battleHdr:{zh:"戰役",en:"Battle"},cmdHdr:{zh:"將領",en:"Commander"},
 kside:{zh:"國軍",en:"Nationalists"},cside:{zh:"共軍",en:"Communists"},
@@ -393,7 +395,7 @@ date:{zh:"時間",en:"Date"},
 noteHdr:{zh:"史實注記",en:"Historical note"},
 aboutText:{zh:"<h3>關於本地圖</h3><div class='row'>本互動地圖概覽1927–1949年國共內戰的進程，資料綜合通行戰史文獻編成，供教育參考。</div><div class='note'>注意事項：<br>① 省界採用現代行政區劃近似，與民國時期省區（如熱河、察哈爾、綏遠、西康、安東等省）不同；東北「九省」在圖上以現代三省呈現。<br>② 控制區為示意性概括，實際控制呈犬牙交錯狀，尤其敵後根據地與游擊區無法以色塊精確表達。<br>③ 兵力數字各方記載差異甚大，本圖取常見估計值；國共雙方對同一戰役的名稱、傷亡與評價常不一致，重要分歧已在說明框「史實注記」中標明。<br>④ 點擊戰役⭐、城市●或將領名可查看詳情；「史實／俗稱」按鈕可切換命名方式。</div>",en:"<h3>About this map</h3><div class='row'>An educational overview of the Chinese Civil War (1927–1949), compiled from standard military histories.</div><div class='note'>Caveats:<br>① Provincial borders are modern approximations — Republican-era provinces (Rehe, Chahar, Suiyuan, Xikang, etc.) differed considerably.<br>② Control areas are schematic; actual control was a patchwork, especially for guerrilla base areas.<br>③ Troop figures vary widely between sources; common estimates are used. Where KMT and CCP accounts diverge (names, casualties, interpretation), the differences are flagged in the 'Historical note' of each popup.<br>④ Click battle ⭐, city ● or commander names for details; toggle 'Historical / Common names' for alternate naming.</div>"}};
 // ===== 全域狀態 =====
-let LANG='zh', NAMEMODE='hist', PHASE=0, PLAYING=false, playTimer=null;
+let LANG='zh', NAMEMODE='hist', PHASE=0, PLAYING=false, playTimer=null, NARRATE=false;
 const $=id=>document.getElementById(id);
 const SVGNS='http://www.w3.org/2000/svg';
 function el(tag,attrs,parent){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
@@ -534,6 +536,35 @@ function showArmy(a){
   openPopup(h);
 }
 
+// ===== 旁白（瀏覽器內建語音合成，無外部服務）=====
+function pickVoice(){
+  const want=LANG==='zh'?['zh-TW','zh-HK','zh-CN','zh']:['en-US','en-GB','en'];
+  const vs=window.speechSynthesis?speechSynthesis.getVoices():[];
+  for(const w of want){const v=vs.find(v=>v.lang&&v.lang.toLowerCase().startsWith(w.toLowerCase()));if(v)return v;}
+  return null;
+}
+function speakPhase(){
+  if(!NARRATE||!window.speechSynthesis)return;
+  speechSynthesis.cancel();
+  const ph=PHASES[PHASE];
+  const text=(LANG==='zh'?('第'+(PHASE+1)+'幕，'+ph.title.zh+'。'):('Act '+(PHASE+1)+'. '+ph.title.en+'. '))+T(ph.narrative);
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=LANG==='zh'?'zh-TW':'en-US';
+  const v=pickVoice();if(v)u.voice=v;
+  u.rate=0.95;
+  speechSynthesis.speak(u);
+}
+function toggleNarrate(){
+  NARRATE=!NARRATE;
+  $('narratebtn').textContent=T(NARRATE?UI.narrateOn:UI.narrateOff);
+  $('narratebtn').classList.toggle('active',NARRATE);
+  if(NARRATE){
+    if(!window.speechSynthesis){alert(LANG==='zh'?'此瀏覽器不支援語音合成':'Speech synthesis not supported in this browser');NARRATE=false;$('narratebtn').classList.remove('active');return;}
+    speechSynthesis.getVoices(); // 觸發語音清單載入（Safari/Chrome 首次為空）
+    speakPhase();
+  }else if(window.speechSynthesis){speechSynthesis.cancel();}
+}
+
 // ===== 時間軸 =====
 const SLIDER_MAX=800,SEG=SLIDER_MAX/PHASES.length;
 function sliderToPhase(v){return Math.min(PHASES.length-1,Math.floor(v/SEG));}
@@ -542,9 +573,9 @@ function updateFromSlider(){
   const p=PHASES[ph],frac=(v-ph*SEG)/SEG;
   const yr=p.years[0]+(p.years[1]-p.years[0])*frac;
   $('yearlabel').textContent=Math.floor(yr);
-  if(ph!==PHASE){PHASE=ph;renderPhase();}
+  if(ph!==PHASE){PHASE=ph;renderPhase();speakPhase();}
 }
-function gotoPhase(i,mid){PHASE=i;$('slider').value=i*SEG+(mid?SEG*0.5:0);const p=PHASES[i];$('yearlabel').textContent=Math.floor(p.years[0]+(mid?(p.years[1]-p.years[0])/2:0));renderPhase();}
+function gotoPhase(i,mid){PHASE=i;$('slider').value=i*SEG+(mid?SEG*0.5:0);const p=PHASES[i];$('yearlabel').textContent=Math.floor(p.years[0]+(mid?(p.years[1]-p.years[0])/2:0));renderPhase();speakPhase();}
 function buildPhaseBtns(){
   const c=$('phasebtns');c.innerHTML='';
   PHASES.forEach((p,i)=>{
@@ -558,6 +589,7 @@ function startPlay(){
   PLAYING=true;$('playbtn').textContent='⏸';
   if(PHASE>=PHASES.length-1)gotoPhase(0,true);
   playTimer=setInterval(()=>{
+    if(NARRATE&&window.speechSynthesis&&speechSynthesis.speaking)return; // 等旁白唸完再換幕
     if(PHASE>=PHASES.length-1){stopPlay();return;}
     gotoPhase(PHASE+1,true);
   },8000);
@@ -576,6 +608,7 @@ function refreshUI(){
   $('langbtn').textContent=LANG==='zh'?'EN':'中文';
   $('namebtn').textContent=T(UI.namebtn[NAMEMODE==='hist'?'pop':'hist']);
   $('aboutbtn').textContent=T(UI.about);
+  $('narratebtn').textContent=T(NARRATE?UI.narrateOn:UI.narrateOff);
   buildLegend();buildPhaseBtns();refreshLabels();renderPhase();
 }
 
@@ -613,7 +646,8 @@ function setupPanZoom(){
 // ===== 事件繫結與啟動 =====
 $('slider').addEventListener('input',()=>{stopPlay();updateFromSlider();});
 $('playbtn').addEventListener('click',()=>PLAYING?stopPlay():startPlay());
-$('langbtn').addEventListener('click',()=>{LANG=LANG==='zh'?'en':'zh';document.documentElement.lang=LANG==='zh'?'zh-Hant':'en';refreshUI();closePopup();});
+$('langbtn').addEventListener('click',()=>{LANG=LANG==='zh'?'en':'zh';document.documentElement.lang=LANG==='zh'?'zh-Hant':'en';refreshUI();closePopup();speakPhase();});
+$('narratebtn').addEventListener('click',toggleNarrate);
 $('namebtn').addEventListener('click',()=>{NAMEMODE=NAMEMODE==='hist'?'pop':'hist';$('namebtn').textContent=T(UI.namebtn[NAMEMODE==='hist'?'pop':'hist']);renderPhase();});
 $('aboutbtn').addEventListener('click',()=>openPopup(T(UI.aboutText)));
 $('popupclose').addEventListener('click',closePopup);
