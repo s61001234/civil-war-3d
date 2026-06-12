@@ -56,6 +56,9 @@ header .sub{font-size:12px;color:var(--dim)}
 .arrow.kmt{stroke:#5b8ad6} .arrow.ccp{stroke:#e0584a}
 .arrowhead.kmt{fill:#5b8ad6} .arrowhead.ccp{fill:#e0584a}
 .marchroute{fill:none;stroke:#ff7a5c;stroke-width:2.6;stroke-dasharray:7 5;filter:drop-shadow(0 0 3px rgba(255,90,60,.7))}
+.dimmed{opacity:.12;transition:opacity .6s}
+.hl{transform-box:fill-box;transform-origin:center;animation:hlpop 1.1s ease}
+@keyframes hlpop{0%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(255,220,100,0))}35%{transform:scale(1.55);filter:drop-shadow(0 0 12px rgba(255,220,100,.95))}100%{transform:scale(1);filter:drop-shadow(0 0 0 rgba(255,220,100,0))}}
 #narr{position:absolute;top:10px;left:10px;max-width:340px;background:rgba(18,26,40,.92);border:1px solid var(--border);border-radius:10px;padding:10px 14px;z-index:10;backdrop-filter:blur(4px)}
 #narr h2{font-size:15px;color:#ffd98a;margin-bottom:4px}
 #narr .yr{font-size:12px;color:var(--dim)}
@@ -248,7 +251,8 @@ battles:[
 {p:[119.02,32.2],zh:"龍潭戰役",en:"Battle of Longtan",date:"1927.8",result:"kmt",k:{str:{zh:"第一、七軍約4萬",en:"~40,000 (1st & 7th Armies)"},cmd:["bai","lizongren"]},c:null,desc:{zh:"孫傳芳渡江反撲南京，白崇禧、李宗仁指揮國軍在龍潭將其主力殲滅，孫部從此一蹶不振。",en:"Sun Chuanfang's counteroffensive across the Yangtze was annihilated at Longtan by Bai Chongxi and Li Zongren, ending his power."}},
 {p:[117.0,36.65],zh:"濟南事件（五三慘案）",en:"Jinan Incident",date:"1928.5",result:"none",k:null,c:null,desc:{zh:"二次北伐途中，日軍出兵山東阻撓並在濟南屠殺中國軍民與外交人員（蔡公時遇害），北伐軍被迫繞道北上。",en:"Japanese troops intervened in Shandong during the second Northern Expedition, killing Chinese soldiers, civilians and diplomats in Jinan; the NRA detoured around the city."}},
 {p:[123.45,41.85],zh:"皇姑屯事件",en:"Huanggutun Incident",date:"1928.6.4",result:"none",k:null,c:null,desc:{zh:"奉系領袖張作霖乘火車退回關外，在瀋陽皇姑屯被日本關東軍預埋炸藥炸死。其子張學良同年12月29日宣布東北易幟。",en:"Warlord Zhang Zuolin was killed by a Japanese Kwantung Army bomb on his train near Shenyang. His son Zhang Xueliang pledged allegiance to Nanjing that December."}}],
-arrows:[{side:"kmt",pts:[[113.3,23.5],[113.0,26.5],[113.5,29.0],[114.3,30.4]]},{side:"kmt",pts:[[114.0,27.0],[115.9,28.6],[118.7,31.9]]},{side:"kmt",pts:[[117.5,34.5],[116.4,39.7]]}]},
+arrows:[{side:"kmt",pts:[[113.3,23.5],[113.0,26.5],[113.5,29.0],[114.3,30.4]]},{side:"kmt",pts:[[114.0,27.0],[115.9,28.6],[118.7,31.9]]},{side:"kmt",pts:[[117.5,34.5],[116.4,39.7]]}],
+cues:[{kw:{zh:"兩湖",en:"Wu Peifu"},t:"b0"},{kw:{zh:"孫傳芳",en:"Sun Chuanfang"},t:"b1"},{kw:{zh:"二次北伐",en:"1928"},t:"b2"},{kw:{zh:"皇姑屯",en:"assassinated"},t:"b3"}]},
 
 {id:1,years:[1927.2,1928.4],title:{zh:"寧漢分裂與清黨",en:"The Split & the Purge"},yr:"1927–1928",
 narrative:{zh:"1927年4月12日蔣介石在上海清黨，大批共產黨員與工會成員被處決；武漢汪精衛政府與南京對立（寧漢分裂），7月武漢亦「分共」，第一次國共合作徹底破裂。中共於8月1日發動南昌起義，9月毛澤東領導秋收起義，12月廣州起義；起義相繼失利後，毛澤東率部上井岡山，1928年4月與朱德會師，開始走「農村包圍城市」的道路。",en:"On April 12, 1927 Chiang purged the Communists in Shanghai; the rival Wuhan government under Wang Jingwei broke with the CCP by July, ending the First United Front. The CCP answered with uprisings at Nanchang (Aug 1), the Autumn Harvest Uprising (Sept) and Guangzhou (Dec). After their defeat, Mao took his survivors to the Jinggang Mountains, joined by Zhu De in April 1928 — the start of rural revolutionary strategy."},
@@ -264,7 +268,8 @@ battles:[
 {p:[113.1,27.8],zh:"秋收起義",en:"Autumn Harvest Uprising",nk:{zh:"秋收暴動",en:"Autumn Harvest Riot"},date:"1927.9",result:"kmt",k:null,c:{str:{zh:"工農革命軍約5,000",en:"~5,000 worker-peasant troops"},cmd:["mao"]},desc:{zh:"毛澤東在湘贛邊界發動起義，原計畫攻取長沙，受挫後率約千人轉入井岡山，開創第一個農村革命根據地。",en:"Mao's uprising on the Hunan-Jiangxi border failed to take Changsha; he led ~1,000 survivors into the Jinggang Mountains, founding the first rural base area."}},
 {p:[113.26,23.13],zh:"廣州起義",en:"Guangzhou Uprising",nk:{zh:"廣州暴動",en:"Canton Riot"},date:"1927.12.11",result:"kmt",k:{str:{zh:"張發奎部回師鎮壓",en:"Zhang Fakui's forces"}},c:{str:{zh:"教導團與工人赤衛隊約2萬",en:"~20,000 cadets & Red Guards"}},desc:{zh:"中共在廣州建立「廣州蘇維埃」，三日即被鎮壓，死難者五千以上，葉挺、葉劍英等突圍。",en:"A three-day 'Canton Soviet' crushed with over 5,000 killed; Ye Ting and Ye Jianying escaped."}},
 {p:[114.17,26.57],zh:"井岡山會師",en:"Jinggangshan Junction",date:"1928.4",result:"ccp",k:null,c:{str:{zh:"會師後約萬餘人，編為紅四軍",en:"~10,000+, formed the Red 4th Army"},cmd:["mao","zhude"]},desc:{zh:"朱德、陳毅率南昌起義餘部與湘南農軍上井岡山，與毛澤東部會師，成立紅四軍，「朱毛」紅軍成為中共武裝核心。",en:"Zhu De's Nanchang remnants joined Mao's force at Jinggangshan, forming the Red 4th Army — the nucleus of the future Red Army."}}],
-arrows:[{side:"ccp",pts:[[115.9,28.6],[116.6,26.5],[115.5,24.5]]},{side:"ccp",pts:[[113.1,27.7],[114.1,26.7]]},{side:"ccp",pts:[[113.3,25.5],[114.1,26.5]]}]},
+arrows:[{side:"ccp",pts:[[115.9,28.6],[116.6,26.5],[115.5,24.5]]},{side:"ccp",pts:[[113.1,27.7],[114.1,26.7]]},{side:"ccp",pts:[[113.3,25.5],[114.1,26.5]]}],
+cues:[{kw:{zh:"上海清黨",en:"purged"},t:"b0"},{kw:{zh:"南昌起義",en:"Nanchang"},t:"b1"},{kw:{zh:"秋收起義",en:"Autumn Harvest"},t:"b2"},{kw:{zh:"廣州起義",en:"Guangzhou"},t:"b3"},{kw:{zh:"井岡山",en:"Jinggang"},t:"b4,z0"}]},
 
 {id:2,years:[1930,1934.7],title:{zh:"中央蘇區與五次圍剿",en:"Soviets & Encirclements"},yr:"1930–1934",
 narrative:{zh:"中共在贛南閩西建立中央蘇區，1931年11月在瑞金成立「中華蘇維埃共和國」；另有鄂豫皖、湘鄂西、川陝等蘇區。1930–34年國軍發動五次圍剿：前三次（10萬→30萬兵力）被紅軍誘敵深入各個擊破；第四次亦失利；第五次蔣介石調集數十萬大軍採德國顧問的碉堡推進戰術，紅軍在「左」傾路線下硬拚消耗，1934年4月廣昌失守，中央蘇區瀕臨絕境。同期1931年九一八事變，日本佔領東北。",en:"The CCP built the Central Soviet in southern Jiangxi/western Fujian, proclaiming the Chinese Soviet Republic at Ruijin in Nov 1931, alongside the E-Yu-Wan, Hunan-West-Hubei and Sichuan-Shaanxi soviets. Five Nationalist encirclement campaigns followed: the first four (100,000–300,000 men) were defeated by mobile tactics, but the fifth used blockhouse warfare on German advice; after Guangchang fell in April 1934 the soviet was doomed. Meanwhile Japan seized Manchuria after the 1931 Mukden Incident."},
@@ -279,7 +284,8 @@ battles:[
 {p:[115.3,27.1],zh:"第一次圍剿・龍岡之戰",en:"1st Encirclement: Longgang",nk:{zh:"第一次剿共・龍岡之役",en:"1st Bandit Suppression: Longgang"},nc:{zh:"第一次反圍剿・龍岡大捷",en:"1st Counter-Encirclement Victory"},date:"1930.12",result:"ccp",k:{str:{zh:"約10萬",en:"~100,000"}},c:{str:{zh:"約4萬",en:"~40,000"},cmd:["mao","zhude"]},desc:{zh:"紅軍誘敵深入，在龍岡全殲張輝瓚第18師師部及兩旅，活捉張輝瓚。隨後第二（1931.4，20萬）、第三次（1931.7，30萬）圍剿亦被擊退。",en:"Luring the enemy deep, the Red Army annihilated Zhang Huizan's 18th Division at Longgang and captured him. The 2nd (200,000 men) and 3rd (300,000) campaigns were likewise repelled."}},
 {p:[116.34,26.84],zh:"第五次圍剿・廣昌戰役",en:"5th Encirclement: Guangchang",nk:{zh:"第五次剿共・廣昌之役",en:"5th Bandit Suppression: Guangchang"},nc:{zh:"第五次反圍剿・廣昌保衛戰",en:"5th Counter-Encirclement: Defense of Guangchang"},date:"1934.4",result:"kmt",k:{str:{zh:"圍剿總兵力數十萬，碉堡推進",en:"hundreds of thousands, blockhouse tactics"},cmd:["chiang"]},c:{str:{zh:"紅軍主力約10萬",en:"~100,000"}},desc:{zh:"第五次圍剿中，紅軍在博古、李德指揮下與優勢國軍打陣地消耗戰，廣昌血戰18天失守，中央蘇區門戶洞開，長征已不可避免。",en:"Under Bo Gu and Otto Braun the Red Army fought positional battles against overwhelming force; Guangchang fell after 18 days, dooming the Central Soviet and forcing the Long March."},note:{zh:"國軍此次圍剿兵力常稱「百萬」，係含各戰區總數；直接用於進攻中央蘇區者約50萬。",en:"The oft-cited 'one million' includes all theaters; ~500,000 directly attacked the Central Soviet."}},
 {p:[123.43,41.80],zh:"九一八事變",en:"Mukden Incident",date:"1931.9.18",result:"none",k:null,c:null,desc:{zh:"日本關東軍自導自演炸毀南滿鐵路，隨即進攻瀋陽北大營。東北軍奉行不抵抗，數月內東北全境淪陷，1932年偽滿洲國成立。",en:"The Kwantung Army staged a railway bombing as pretext to seize Shenyang. Under non-resistance orders, all Manchuria fell within months; the puppet state Manchukuo was created in 1932."},note:{zh:"「不抵抗」命令出自張學良或蔣介石，史學界仍有爭論；張晚年自承為其本人決定。",en:"Historians long debated who issued the non-resistance order; Zhang Xueliang later said the decision was his own."}}],
-arrows:[{side:"kmt",pts:[[115.9,28.3],[116.2,27.0]]},{side:"kmt",pts:[[117.6,26.6],[116.6,26.2]]},{side:"kmt",pts:[[114.5,25.5],[115.3,25.6]]}]},
+arrows:[{side:"kmt",pts:[[115.9,28.3],[116.2,27.0]]},{side:"kmt",pts:[[117.6,26.6],[116.6,26.2]]},{side:"kmt",pts:[[114.5,25.5],[115.3,25.6]]}],
+cues:[{kw:{zh:"中央蘇區",en:"Central Soviet"},t:"z0,c:ruijin"},{kw:{zh:"鄂豫皖",en:"E-Yu-Wan"},t:"z1"},{kw:{zh:"湘鄂西",en:"Hunan-West-Hubei"},t:"z2"},{kw:{zh:"川陝",en:"Sichuan-Shaanxi"},t:"z3"},{kw:{zh:"前三次",en:"first four"},t:"b0"},{kw:{zh:"廣昌",en:"Guangchang"},t:"b1"},{kw:{zh:"九一八",en:"Mukden"},t:"b2"}]},
 
 {id:3,years:[1934.75,1936.85],title:{zh:"長征",en:"The Long March"},yr:"1934–1936",
 narrative:{zh:"1934年10月，中央紅軍8.6萬人撤離中央蘇區突圍西進。湘江一役折損過半；1935年1月遵義會議確立毛澤東領導地位。此後四渡赤水、巧渡金沙江、強渡大渡河、飛奪瀘定橋、翻雪山過草地，1935年10月抵達陝北吳起鎮時僅餘數千人。紅二方面軍、紅四方面軍亦先後長征，1936年10月三大主力於甘肅會寧會師，行程號稱二萬五千里。",en:"In October 1934, 86,000 troops of the Central Red Army broke out of the Jiangxi soviet. Over half were lost crossing the Xiang River; the January 1935 Zunyi Conference made Mao the de facto leader. After crossing the Chishui four times, the Jinsha and Dadu rivers, the snow mountains and the grasslands, only a few thousand reached Wuqi in northern Shaanxi in October 1935. The three main Red armies reunited at Huining, Gansu, in October 1936 — a march famed as '25,000 li.'"},
@@ -295,7 +301,8 @@ battles:[
 {p:[105.7,28.4],zh:"四渡赤水",en:"Four Crossings of the Chishui",date:"1935.1–3",result:"ccp",k:{str:{zh:"川滇黔軍與中央軍40萬",en:"~400,000"},cmd:["xueyue"]},c:{str:{zh:"約3萬",en:"~30,000"},cmd:["mao"]},desc:{zh:"紅軍在赤水河兩岸反覆機動，四次渡河聲東擊西，跳出數十萬國軍合圍，被視為毛澤東軍事指揮的得意之筆。",en:"Feinting back and forth across the Chishui River four times, the Red Army slipped a noose of 400,000 troops — celebrated as Mao's masterpiece of maneuver."}},
 {p:[102.23,29.91],zh:"飛奪瀘定橋",en:"Luding Bridge",date:"1935.5.29",result:"ccp",k:{str:{zh:"川軍守橋部隊",en:"Sichuan garrison"}},c:{str:{zh:"紅四團22名突擊隊員",en:"22 assault troops, Red 4th Regiment"}},desc:{zh:"紅軍先頭部隊一晝夜奔襲240里，沿僅餘鐵索的瀘定橋攀爬突擊奪橋，使主力得以渡過大渡河。",en:"After a forced march of 120 km in a day, vanguard troops crawled across the chain bridge at Luding under fire, securing the Dadu River crossing."},note:{zh:"中共敘事中22勇士冒槍林彈雨奪橋；部分史家認為守軍薄弱、戰鬥規模有限。雙方記載差異大。",en:"In CCP accounts a heroic assault under heavy fire; some historians argue the bridge was lightly defended. Accounts differ considerably."}},
 {p:[108.18,36.92],zh:"吳起鎮會師／直羅鎮戰役",en:"Wuqi & Zhiluozhen",date:"1935.10–11",result:"ccp",k:{str:{zh:"東北軍109師等",en:"NE Army 109th Div."}},c:{str:{zh:"紅一方面軍約萬餘",en:"~10,000+"},cmd:["mao","pengdehuai"]},desc:{zh:"中央紅軍抵達陝北與劉志丹陝甘紅軍會合；11月直羅鎮殲東北軍一個師，為中共中央落腳西北「奠基」。",en:"The Central Red Army reached the Shaanxi-Gansu soviet; the November victory at Zhiluozhen destroyed a pursuing division and secured the new northwestern base."}}],
-arrows:[{side:"kmt",pts:[[112.9,28.0],[110.8,26.5]]},{side:"kmt",pts:[[104.0,30.6],[103.0,29.0]]}]},
+arrows:[{side:"kmt",pts:[[112.9,28.0],[110.8,26.5]]},{side:"kmt",pts:[[104.0,30.6],[103.0,29.0]]}],
+cues:[{kw:{zh:"撤離中央蘇區",en:"broke out"},t:"march,c:ruijin"},{kw:{zh:"湘江",en:"Xiang River"},t:"b0"},{kw:{zh:"遵義會議",en:"Zunyi"},t:"b1,c:zunyi"},{kw:{zh:"四渡赤水",en:"Chishui"},t:"b2"},{kw:{zh:"瀘定橋",en:"Dadu"},t:"b3"},{kw:{zh:"吳起鎮",en:"Wuqi"},t:"b4,z0"},{kw:{zh:"紅四方面軍",en:"three main"},t:"z1"}]},
 
 {id:4,years:[1936.9,1937.5],title:{zh:"西安事變與二次合作",en:"Xi'an Incident & 2nd United Front"},yr:"1936–1937",
 narrative:{zh:"1936年12月12日，張學良、楊虎城在西安扣留前來督剿的蔣介石，要求停止內戰、一致抗日。經周恩來等斡旋，事變和平解決，蔣承諾停止剿共。1937年七七事變後第二次國共合作正式形成：紅軍主力改編為國民革命軍第八路軍（朱德任總指揮，轄115、120、129師），南方游擊隊改編為新四軍（葉挺任軍長）。",en:"On Dec 12, 1936, Zhang Xueliang and Yang Hucheng detained Chiang Kai-shek in Xi'an, demanding an end to the civil war to resist Japan. Mediated by Zhou Enlai, the incident ended peacefully. After the Marco Polo Bridge Incident of July 1937, the Second United Front formed: the Red Army became the 8th Route Army (under Zhu De, with the 115th, 120th and 129th Divisions), and southern guerrillas became the New 4th Army under Ye Ting."},
@@ -308,7 +315,8 @@ armies:[
 battles:[
 {p:[108.94,34.34],zh:"西安事變",en:"Xi'an Incident",alt:{zh:"雙十二事變",en:"'Double Twelve Incident'"},date:"1936.12.12",result:"none",k:null,c:null,desc:{zh:"張學良、楊虎城發動「兵諫」，在華清池扣留蔣介石。中共派周恩來協商，宋美齡、宋子文斡旋，12月25日蔣獲釋返京，內戰實質停止。張學良送蔣回京後遭軟禁逾半世紀。",en:"Zhang Xueliang and Yang Hucheng seized Chiang at Huaqing Hot Springs in a 'military remonstrance.' With Zhou Enlai mediating, Chiang was released on Dec 25 after agreeing to halt the civil war. Zhang spent over fifty years under house arrest."}},
 {p:[116.21,39.84],zh:"盧溝橋事變",en:"Marco Polo Bridge Incident",alt:{zh:"七七事變",en:"'July 7 Incident'"},date:"1937.7.7",result:"none",k:null,c:null,desc:{zh:"日軍在北平西南盧溝橋藉口士兵失蹤挑起戰端，中日全面戰爭爆發，國共內戰讓位於八年抗戰。",en:"A Japanese provocation at the Marco Polo Bridge southwest of Beiping ignited full-scale war with Japan, suspending the civil war for eight years."}}],
-arrows:[]},
+arrows:[],
+cues:[{kw:{zh:"西安",en:"Xi'an"},t:"b0"},{kw:{zh:"七七事變",en:"Marco Polo"},t:"b1"}]},
 
 {id:5,years:[1937.5,1945.6],title:{zh:"抗日戰爭時期",en:"War of Resistance (WWII)"},yr:"1937–1945",
 narrative:{zh:"抗戰期間日軍佔領東北、華北、華東與華南沿海精華地帶；國民政府遷都重慶，正面戰場歷經淞滬、徐州、武漢、三次長沙等大會戰。中共在敵後建立陝甘寧、晉察冀、晉冀魯豫、山東、華中等根據地，八路軍、新四軍由數萬發展至1945年的約91萬正規軍。1940年百團大戰後日軍報復「掃蕩」；1941年皖南事變使國共摩擦公開化。雙方在抗日的同時都在為戰後對決積蓄力量。",en:"Japan occupied Manchuria, North China, and the eastern seaboard; the Nationalist government fought major conventional battles (Shanghai, Xuzhou, Wuhan, Changsha) from its wartime capital Chongqing. Behind Japanese lines the CCP built base areas — Shaan-Gan-Ning, Jin-Cha-Ji, Jin-Ji-Lu-Yu, Shandong, Central China — growing to ~910,000 regulars by 1945. The 1940 Hundred Regiments Offensive brought brutal reprisals; the 1941 New 4th Army Incident exposed KMT-CCP friction. Both sides husbanded strength for the showdown to come."},
@@ -324,7 +332,8 @@ battles:[
 {p:[113.7,37.9],zh:"百團大戰",en:"Hundred Regiments Offensive",date:"1940.8–12",result:"ccp",k:null,c:{str:{zh:"八路軍105個團約20–40萬",en:"105 regiments, ~200,000–400,000"},cmd:["pengdehuai"]},desc:{zh:"彭德懷指揮八路軍對華北日軍交通線發動大規模破襲戰，重創正太鐵路等線。日軍隨後展開殘酷的「三光」掃蕩，根據地一度嚴重萎縮。",en:"Peng Dehuai's massive sabotage offensive crippled Japanese rail lines in North China. Japan retaliated with scorched-earth 'Three Alls' campaigns that severely shrank the base areas."}},
 {p:[118.4,30.7],zh:"皖南事變",en:"New 4th Army Incident",nk:{zh:"新四軍事件（違令叛變）",en:"New 4th Army Incident (mutiny)"},nc:{zh:"皖南事變（千古奇冤）",en:"Wannan Incident (a grave injustice)"},date:"1941.1",result:"kmt",k:{str:{zh:"第三戰區約8萬",en:"~80,000, 3rd War Zone"}},c:{str:{zh:"新四軍軍部約9,000",en:"~9,000 HQ column"},cmd:["yeting"]},desc:{zh:"新四軍軍部北移途中在皖南被國軍包圍攻擊，大部損失，軍長葉挺被扣、副軍長項英遇害。國共統一戰線名存實亡。",en:"The New 4th Army headquarters column was surrounded and destroyed by Nationalist forces in southern Anhui; Ye Ting was imprisoned. The United Front survived in name only."},note:{zh:"國方稱新四軍違令不依指定路線北移；中共稱蓄謀圍殲。雙方敘事至今對立。",en:"The KMT said the unit defied movement orders; the CCP calls it a premeditated massacre. Narratives remain opposed."}},
 {p:[112.94,28.23],zh:"三次長沙會戰",en:"Battles of Changsha",date:"1939–1942",result:"kmt",k:{str:{zh:"第九戰區約30萬",en:"~300,000, 9th War Zone"},cmd:["xueyue"]},c:null,desc:{zh:"薛岳以「天爐戰法」三度挫敗日軍對長沙的進攻，是正面戰場少數的大規模防禦勝利（此為國軍對日作戰，列出以呈現全局態勢）。",en:"Xue Yue's 'cauldron' defense repelled three Japanese offensives against Changsha — shown here for overall context (a Nationalist victory over Japan, not a KMT-CCP battle)."}}],
-arrows:[]},
+arrows:[],
+cues:[{kw:{zh:"三次長沙",en:"Changsha"},t:"b3"},{kw:{zh:"陝甘寧",en:"Shaan-Gan-Ning"},t:"z0"},{kw:{zh:"晉察冀",en:"Jin-Cha-Ji"},t:"z1"},{kw:{zh:"晉冀魯豫",en:"Jin-Ji-Lu-Yu"},t:"z2"},{kw:{zh:"山東",en:"Shandong"},t:"z3"},{kw:{zh:"華中",en:"Central China"},t:"z4"},{kw:{zh:"百團大戰",en:"Hundred Regiments"},t:"b1"},{kw:{zh:"皖南事變",en:"New 4th Army Incident"},t:"b2"}]},
 
 {id:6,years:[1945.6,1948.6],title:{zh:"重慶談判與全面內戰",en:"Chongqing Talks & Civil War Resumes"},yr:"1945–1948",
 narrative:{zh:"1945年8月日本投降，毛澤東赴重慶與蔣介石談判，10月10日簽署雙十協定，但停戰終告破裂。國軍約430萬對共軍約127萬。中共搶先進入蘇軍佔領的東北；1946年6月全面內戰爆發。國軍初期攻勢凌厲，1947年3月佔領延安，但戰線過長。1947年中共轉入反攻：劉鄧大軍躍進大別山，林彪在東北秋冬攻勢連捷，粟裕在孟良崮全殲整編74師。至1948年中，攻守之勢逆轉。",en:"After Japan's surrender, Mao flew to Chongqing and signed the Double Tenth Agreement on Oct 10, 1945 — but the truce collapsed. Some 4.3 million Nationalist troops faced ~1.27 million Communists. The CCP raced into Soviet-occupied Manchuria; full war erupted in June 1946. Early Nationalist offensives took Yan'an in March 1947, but overstretched. The CCP counterattacked: Liu Bocheng and Deng Xiaoping struck into the Dabie Mountains, Lin Biao won repeated offensives in Manchuria, and Su Yu annihilated the elite 74th Division at Menglianggu. By mid-1948 the tide had turned."},
@@ -342,7 +351,8 @@ battles:[
 {p:[109.49,36.60],zh:"延安失守",en:"Fall of Yan'an",nk:{zh:"國軍克復延安",en:"Recovery of Yan'an"},nc:{zh:"延安保衛戰・轉戰陝北",en:"Defense of Yan'an"},date:"1947.3",result:"kmt",k:{str:{zh:"胡宗南部約25萬",en:"~250,000"},cmd:["husongnan"]},c:{str:{zh:"西北野戰兵團約2.6萬",en:"~26,000"},cmd:["pengdehuai"]},desc:{zh:"胡宗南攻佔中共首府延安，國府宣傳為重大勝利；中共中央早已主動撤離，彭德懷隨後以青化砭、羊馬河、蟠龍三戰三捷消耗胡部，1948年4月收復延安。",en:"Hu Zongnan took the Communist capital — trumpeted as a great victory — but the CCP had already evacuated. Peng Dehuai then bled Hu's army in three quick battles and retook Yan'an in April 1948."},note:{zh:"「攻佔延安」常被視為國軍勝利頂點，實為虛勝：未殲共軍主力，反陷泥潭。",en:"Often cited as the Nationalist high-water mark, it was a hollow victory that trapped Hu's forces."}},
 {p:[118.25,35.65],zh:"孟良崮戰役",en:"Menglianggu",date:"1947.5",result:"ccp",k:{str:{zh:"整編74師3.2萬（全軍4個兵團45萬在側）",en:"32,000 (74th Div.; 450,000 nearby)"},cmd:["liuzhi"]},c:{str:{zh:"華東野戰軍5個縱隊約27萬",en:"~270,000"},cmd:["suyu","chenyi"]},desc:{zh:"粟裕「百萬軍中取上將首級」，從國軍重兵集團中央割裂出王牌整編74師，圍殲於孟良崮，師長張靈甫陣亡。",en:"Su Yu cut the elite 74th Division out of the center of a massive Nationalist formation and annihilated it on Menglianggu mountain; commander Zhang Lingfu was killed."},note:{zh:"張靈甫之死，中共稱擊斃，國府稱「殺身成仁」自戕，記載不一。",en:"Whether Zhang was killed in action or died by suicide is disputed between the two sides' accounts."}},
 {p:[115.7,31.3],zh:"千里躍進大別山",en:"Thrust into the Dabie Mountains",date:"1947.6–8",result:"ccp",k:null,c:{str:{zh:"晉冀魯豫野戰軍主力約12萬",en:"~120,000"},cmd:["liubocheng"]},desc:{zh:"劉伯承、鄧小平率部強渡黃河，千里躍進大別山，直插國統區心臟，迫使國軍由全面進攻轉為兩翼防禦，被視為內戰戰略轉折點。",en:"Liu Bocheng and Deng Xiaoping crossed the Yellow River and drove 500 km into the Dabie Mountains at the heart of Nationalist territory — the strategic turning point that forced the KMT onto the defensive."}}],
-arrows:[{side:"ccp",pts:[[117.5,37.0],[121.0,40.0],[123.5,42.5]]},{side:"kmt",pts:[[120.0,40.2],[122.8,41.5]]},{side:"ccp",pts:[[114.5,35.2],[115.4,32.0]]},{side:"kmt",pts:[[107.6,33.9],[109.3,36.3]]}]},
+arrows:[{side:"ccp",pts:[[117.5,37.0],[121.0,40.0],[123.5,42.5]]},{side:"kmt",pts:[[120.0,40.2],[122.8,41.5]]},{side:"ccp",pts:[[114.5,35.2],[115.4,32.0]]},{side:"kmt",pts:[[107.6,33.9],[109.3,36.3]]}],
+cues:[{kw:{zh:"重慶",en:"Chongqing"},t:"b0"},{kw:{zh:"搶先進入",en:"raced into"},t:"b1"},{kw:{zh:"延安",en:"Yan'an"},t:"b2"},{kw:{zh:"大別山",en:"Dabie"},t:"b4,z4"},{kw:{zh:"孟良崮",en:"Menglianggu"},t:"b3"}]},
 
 {id:7,years:[1948.6,1949.1],title:{zh:"三大戰役",en:"The Three Great Campaigns"},yr:"1948–1949",
 narrative:{zh:"1948年9月至1949年1月，三場決定性戰役在四個多月內殲滅國軍約150餘萬精銳。遼瀋戰役（9.12–11.2）東北野戰軍先克錦州關門打狗，全取東北；淮海戰役／徐蚌會戰（11.6–1.10）華東、中原兩野戰軍以60萬對80萬，分割殲滅黃百韜、黃維、杜聿明三個集團；平津戰役（11.29–1.31）百萬大軍隔斷華北，天津29小時被攻克，傅作義率25萬守軍接受和平改編，北平古都無戰易手。",en:"Between Sept 1948 and Jan 1949, three decisive campaigns destroyed some 1.5 million of the Nationalists' best troops. In Liaoshen (Sept 12–Nov 2) Lin Biao took Jinzhou to 'shut the door' and swept Manchuria. In Huaihai (Nov 6–Jan 10), 600,000 Communists encircled and destroyed three army groups totaling 800,000. In Pingjin (Nov 29–Jan 31), Tianjin fell in 29 hours and Fu Zuoyi surrendered Beiping peacefully with 250,000 men."},
@@ -359,7 +369,8 @@ battles:[
 {p:[125.32,43.88],lp:[10,-13],zh:"長春圍困戰",en:"Siege of Changchun",nk:{zh:"長春圍城",en:"Siege of Changchun"},nc:{zh:"解放長春",en:"Liberation of Changchun"},date:"1948.5–10",result:"ccp",k:{str:{zh:"守軍約10萬（鄭洞國）",en:"~100,000 (Zheng Dongguo)"}},c:{str:{zh:"圍城部隊約10萬",en:"~100,000 besiegers"}},desc:{zh:"東北野戰軍久困長春並封鎖糧食出入，城內餓殍遍地；10月17日60軍曾澤生部起義，19日鄭洞國放下武器。",en:"Months of blockade starved the city; the 60th Army defected on Oct 17 and Zheng Dongguo capitulated on Oct 19."},note:{zh:"圍城期間平民餓死人數從數萬至十餘萬說法不一，中國大陸官方敘事長期淡化此節。",en:"Civilian starvation deaths are estimated from tens of thousands to over 100,000; official PRC accounts long downplayed the episode."}},
 {p:[117.7,34.1],zh:"淮海戰役",en:"Huaihai Campaign",nk:{zh:"徐蚌會戰",en:"Hsu-Beng Campaign"},nc:{zh:"淮海戰役",en:"Huaihai Campaign"},date:"1948.11.6–1949.1.10",result:"ccp",k:{str:{zh:"約80萬",en:"~800,000"},cmd:["liuzhi","duyuming","bai"]},c:{str:{zh:"約60萬＋支前民工543萬",en:"~600,000 + 5.4M support laborers"},cmd:["suyu","liubocheng","chenyi"]},desc:{zh:"以徐州為中心，解放軍先在碾莊殲黃百韜兵團（11.22），再於雙堆集殲黃維兵團（12.15），最後在陳官莊圍殲杜聿明集團30萬（1.10），邱清泉陣亡、杜聿明被俘。國軍損失約55.5萬，長江以北精銳盡失。",en:"Centered on Xuzhou: Huang Baitao's group was destroyed at Nianzhuang (Nov 22), Huang Wei's at Shuangduiji (Dec 15), and Du Yuming's 300,000 encircled and annihilated at Chenguanzhuang (Jan 10). Total Nationalist losses ~555,000 — the army north of the Yangtze ceased to exist."},note:{zh:"民工支前數字出自中共戰史；國府方面強調指揮體系混亂與蔣介石越級指揮為敗因。",en:"Laborer figures come from PLA histories; ROC accounts blame chaotic command and Chiang's micromanagement for the defeat."}},
 {p:[117.20,39.08],lp:[11,14],zh:"平津戰役・天津攻堅",en:"Pingjin: Storming of Tianjin",nk:{zh:"平津會戰",en:"Pingjin Campaign (ROC)"},nc:{zh:"平津戰役・和平解放北平",en:"Pingjin Campaign: peaceful liberation of Beiping"},date:"1948.11.29–1949.1.31",result:"ccp",k:{str:{zh:"華北國軍約52萬",en:"~520,000"},cmd:["fuzuoyi"]},c:{str:{zh:"東野＋華北約100萬",en:"~1,000,000"},cmd:["linbiao","nierongzhen","luoronghuan"]},desc:{zh:"東北野戰軍提前入關，先克新保安、張家口截斷西逃之路，1949年1月14日總攻天津，29小時破城俘陳長捷。1月31日傅作義接受和平改編，北平25萬守軍出城整編，古都完整易手。",en:"The Northeast Field Army slipped inside the Great Wall early, cutting escape routes at Xinbao'an and Zhangjiakou, then stormed Tianjin in 29 hours on Jan 14–15. On Jan 31 Fu Zuoyi accepted peaceful reorganization and Beiping's 250,000 defenders marched out — the ancient capital changed hands without a shot."}}],
-arrows:[{side:"ccp",pts:[[122.5,44.5],[121.3,41.5]]},{side:"ccp",pts:[[123.3,42.8],[123.4,41.9]]},{side:"ccp",pts:[[120.0,41.8],[117.6,40.2],[116.6,39.95]]},{side:"ccp",pts:[[118.3,36.0],[117.4,34.4]]},{side:"ccp",pts:[[114.8,34.5],[116.8,33.8]]},{side:"kmt",pts:[[117.1,34.1],[116.4,33.3]]}]},
+arrows:[{side:"ccp",pts:[[122.5,44.5],[121.3,41.5]]},{side:"ccp",pts:[[123.3,42.8],[123.4,41.9]]},{side:"ccp",pts:[[120.0,41.8],[117.6,40.2],[116.6,39.95]]},{side:"ccp",pts:[[118.3,36.0],[117.4,34.4]]},{side:"ccp",pts:[[114.8,34.5],[116.8,33.8]]},{side:"kmt",pts:[[117.1,34.1],[116.4,33.3]]}],
+cues:[{kw:{zh:"錦州",en:"Jinzhou"},t:"b0"},{kw:{zh:"全取東北",en:"swept Manchuria"},t:"b1"},{kw:{zh:"淮海戰役",en:"Huaihai"},t:"b2"},{kw:{zh:"平津戰役",en:"Pingjin"},t:"b3"}]},
 
 {id:8,years:[1949.1,1949.99],title:{zh:"渡江戰役與中華人民共和國成立",en:"Yangtze Crossing & Founding of the PRC"},yr:"1949",
 narrative:{zh:"1949年1月蔣介石下野，李宗仁代總統主持和談，4月20日和談破裂。當夜解放軍第二、三野戰軍百萬大軍在西起湖口、東至江陰的千里戰線強渡長江，4月23日佔南京，5月27日克上海。此後各路南下西進：8月蘭州、10月廣州、11月重慶、12月成都相繼易手，雲南、新疆等地通電起義。10月1日毛澤東在北京宣告中華人民共和國成立；12月7日中華民國政府遷臺北。10月下旬金門古寧頭一役，登島解放軍9千餘人全軍覆沒，兩岸分治格局自此底定。",en:"Chiang stepped down in January 1949; peace talks under acting president Li Zongren collapsed on April 20. That night a million men of the 2nd and 3rd Field Armies forced the Yangtze along a 500-km front, taking Nanjing on April 23 and Shanghai on May 27. Lanzhou fell in August, Guangzhou in October, Chongqing in November, Chengdu in December, while Yunnan and Xinjiang defected. Mao proclaimed the PRC in Beijing on October 1; the ROC government moved to Taipei on December 7. At Guningtou on Quemoy in late October, a 9,000-man PLA landing force was wiped out — fixing the cross-strait division that endures."},
@@ -376,7 +387,8 @@ battles:[
 {p:[112.0,26.9],zh:"衡寶戰役",en:"Hengbao Campaign",date:"1949.9–10",result:"ccp",k:{str:{zh:"白崇禧部約20餘萬",en:"~200,000+ (Bai Chongxi)"},cmd:["bai"]},c:{str:{zh:"第四野戰軍主力",en:"4th Field Army main force"},cmd:["linbiao"]},desc:{zh:"林彪與白崇禧在湘南衡陽、寶慶一帶決戰，桂系精銳第7軍主力被殲，白部退入廣西後瓦解，華中最後一支國軍重兵集團消失。",en:"Lin Biao broke Bai Chongxi's Guangxi army in southern Hunan, destroying the elite 7th Corps; Bai's remnants disintegrated in Guangxi — the last major Nationalist force in central China."}},
 {p:[118.32,24.45],zh:"古寧頭戰役",en:"Battle of Guningtou",nk:{zh:"古寧頭大捷（金門保衛戰）",en:"Guningtou Victory (Defense of Kinmen)"},nc:{zh:"金門戰役（登陸失利）",en:"Battle of Kinmen (failed landing)"},date:"1949.10.25–27",result:"kmt",k:{str:{zh:"守軍約4萬",en:"~40,000 defenders"}},c:{str:{zh:"登島部隊9,086人",en:"9,086 landing troops"}},desc:{zh:"解放軍三個團乘木船夜渡攻金門，因船隻擱淺無法返航接運後援，登島部隊苦戰三日全軍覆沒（陣亡與被俘各約半數），是國軍在內戰末期罕見的完勝，亦使臺海登陸作戰自此停頓。",en:"Three PLA regiments landed on Quemoy by night, but their junks grounded and no second wave could follow; after three days the entire force was killed or captured — a rare complete Nationalist victory that halted further amphibious attempts."}},
 {p:[116.40,39.90],zh:"開國大典",en:"Founding of the PRC",nk:{zh:"大陸淪陷・政府遷臺",en:"Fall of the Mainland; government moves to Taiwan"},nc:{zh:"開國大典",en:"Founding Ceremony of the PRC"},date:"1949.10.1",result:"ccp",k:null,c:{str:null,cmd:["mao","zhude"]},desc:{zh:"毛澤東在天安門城樓宣告中華人民共和國中央人民政府成立。12月7日中華民國政府遷設臺北，國共內戰大規模作戰階段結束（沿海島嶼戰鬥與西南作戰延續至1950年代初）。",en:"Mao proclaimed the People's Republic from Tiananmen. On Dec 7 the ROC government relocated to Taipei; large-scale fighting ended, though island and southwestern operations continued into the early 1950s."}}],
-arrows:[{side:"ccp",pts:[[117.5,33.0],[118.7,32.2]]},{side:"ccp",pts:[[114.0,31.5],[113.0,28.5],[113.2,23.6]]},{side:"ccp",pts:[[119.5,32.5],[121.2,31.5]]},{side:"ccp",pts:[[106.0,34.5],[103.9,36.0]]},{side:"ccp",pts:[[107.0,30.5],[104.3,30.7]]},{side:"kmt",pts:[[121.0,29.0],[121.4,25.4]]}]}
+arrows:[{side:"ccp",pts:[[117.5,33.0],[118.7,32.2]]},{side:"ccp",pts:[[114.0,31.5],[113.0,28.5],[113.2,23.6]]},{side:"ccp",pts:[[119.5,32.5],[121.2,31.5]]},{side:"ccp",pts:[[106.0,34.5],[103.9,36.0]]},{side:"ccp",pts:[[107.0,30.5],[104.3,30.7]]},{side:"kmt",pts:[[121.0,29.0],[121.4,25.4]]}],
+cues:[{kw:{zh:"強渡長江",en:"forced the Yangtze"},t:"b0"},{kw:{zh:"蘭州",en:"Lanzhou"},t:"b1"},{kw:{zh:"中華人民共和國成立",en:"proclaimed the PRC"},t:"b4"},{kw:{zh:"古寧頭",en:"Guningtou"},t:"b3"}]}
 ];
 
 // ===== 逐省控制權時間軸（依史實月份，地圖隨滑桿逐省翻轉）=====
@@ -458,7 +470,7 @@ date:{zh:"時間",en:"Date"},
 noteHdr:{zh:"史實注記",en:"Historical note"},
 aboutText:{zh:"<h3>關於本地圖</h3><div class='row'>本互動地圖概覽1927–1949年國共內戰的進程，資料綜合通行戰史文獻編成，供教育參考。</div><div class='note'>注意事項：<br>① 省界採用現代行政區劃近似，與民國時期省區（如熱河、察哈爾、綏遠、西康、安東等省）不同；東北「九省」在圖上以現代三省呈現。<br>② 控制區為示意性概括，實際控制呈犬牙交錯狀，尤其敵後根據地與游擊區無法以色塊精確表達。<br>③ 兵力數字各方記載差異甚大，本圖取常見估計值；國共雙方對同一戰役的名稱、傷亡與評價常不一致，重要分歧已在說明框「史實注記」中標明。<br>④ 點擊戰役⭐、城市●或將領名可查看詳情；「史實／俗稱」按鈕可切換命名方式。</div>",en:"<h3>About this map</h3><div class='row'>An educational overview of the Chinese Civil War (1927–1949), compiled from standard military histories.</div><div class='note'>Caveats:<br>① Provincial borders are modern approximations — Republican-era provinces (Rehe, Chahar, Suiyuan, Xikang, etc.) differed considerably.<br>② Control areas are schematic; actual control was a patchwork, especially for guerrilla base areas.<br>③ Troop figures vary widely between sources; common estimates are used. Where KMT and CCP accounts diverge (names, casualties, interpretation), the differences are flagged in the 'Historical note' of each popup.<br>④ Click battle ⭐, city ● or commander names for details; toggle 'Historical / Common names' for alternate naming.</div>"}};
 // ===== 全域狀態 =====
-let LANG='zh', NAMEMODE='ccp', PHASE=0, PLAYING=false, playTimer=null, NARRATE=false, TIME=1926.5;
+let LANG='zh', NAMEMODE='ccp', PHASE=0, PLAYING=false, playTimer=null, NARRATE=false, TIME=1926.5, camAnim=null;
 const $=id=>document.getElementById(id);
 const SVGNS='http://www.w3.org/2000/svg';
 function el(tag,attrs,parent){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
@@ -610,12 +622,51 @@ function showArmy(a){
   openPopup(h);
 }
 
+// ===== 旁白同步高亮：唸到的事件亮起，未唸到的先壓暗 =====
+let cueTimers=[];
+function clearCues(){
+  cueTimers.forEach(clearTimeout);cueTimers=[];
+  document.querySelectorAll('.dimmed,.hl').forEach(e=>{e.classList.remove('dimmed');e.classList.remove('hl');});
+}
+function cueTargets(spec){
+  const out=[];
+  for(const s of spec.split(',')){
+    if(s==='march'){const m=document.querySelector('.marchroute');if(m)out.push(m);}
+    else if(s.startsWith('c:')){const i=CITIES.findIndex(c=>c.id===s.slice(2));const g=document.querySelectorAll('#cities .city')[i];if(g)out.push(g);}
+    else if(s[0]==='b'){const g=document.querySelectorAll('#battles .battle')[+s.slice(1)];if(g)out.push(g);}
+    else if(s[0]==='z'){const i=+s.slice(1);const e=document.querySelectorAll('#zones .zone')[i],l=document.querySelectorAll('#zones .zonelabel')[i];if(e)out.push(e);if(l)out.push(l);}
+    else if(s[0]==='a'){const g=document.querySelectorAll('#armies .army')[+s.slice(1)];if(g)out.push(g);}
+  }
+  return out;
+}
+function narrText(ph){
+  return (LANG==='zh'?('第'+(PHASE+1)+'幕，'+ph.title.zh+'。'):('Act '+(PHASE+1)+'. '+ph.title.en+'. '))+T(ph.narrative);
+}
+function setupCues(dur){
+  clearCues();
+  const ph=PHASES[PHASE];
+  if(!ph.cues||!NARRATE||!dur||!isFinite(dur))return;
+  const text=narrText(ph);
+  for(const cue of ph.cues){
+    const kw=LANG==='zh'?cue.kw.zh:cue.kw.en;
+    const pos=text.indexOf(kw);
+    const targets=cueTargets(cue.t);
+    targets.forEach(e=>e.classList.add('dimmed'));
+    // 依關鍵詞在講稿中的位置按比例推估出現時間
+    const at=(pos<0?0.9:pos/text.length)*dur*1000;
+    cueTimers.push(setTimeout(()=>{
+      targets.forEach(e=>{e.classList.remove('dimmed');e.classList.add('hl');});
+    },Math.max(0,at)));
+  }
+}
+
 // ===== 旁白（優先播放預錄神經網路語音 MP3，失敗時退回瀏覽器語音合成）=====
 const narrAudio=new Audio();
 let AUDIO_OK=true;
 function stopNarration(){
-  try{narrAudio.onerror=null;narrAudio.pause();narrAudio.currentTime=0;}catch(e){}
+  try{narrAudio.onerror=null;narrAudio.onloadedmetadata=null;narrAudio.pause();narrAudio.currentTime=0;}catch(e){}
   if(window.speechSynthesis)speechSynthesis.cancel();
+  clearCues();
 }
 function narrBusy(){
   return (!narrAudio.paused&&!narrAudio.ended)||(window.speechSynthesis&&speechSynthesis.speaking);
@@ -626,6 +677,7 @@ function speakPhase(){
   if(AUDIO_OK){
     narrAudio.src='audio/p'+PHASE+'_'+LANG+'.mp3';
     narrAudio.onerror=()=>{AUDIO_OK=false;speakPhaseTTS();};
+    narrAudio.onloadedmetadata=()=>setupCues(narrAudio.duration);
     narrAudio.play().catch(()=>{AUDIO_OK=false;speakPhaseTTS();});
   }else speakPhaseTTS();
 }
@@ -646,6 +698,7 @@ function speakPhaseTTS(){
   const v=pickVoice();if(v)u.voice=v;
   u.rate=0.95;
   speechSynthesis.speak(u);
+  setupCues(text.length*(LANG==='zh'?0.16:0.065)); // 估算朗讀時長
 }
 function toggleNarrate(){
   NARRATE=!NARRATE;
@@ -665,10 +718,10 @@ function updateFromSlider(){
   const p=PHASES[ph],frac=(v-ph*SEG)/SEG;
   TIME=p.years[0]+(p.years[1]-p.years[0])*frac;
   $('yearlabel').textContent=Math.floor(TIME);
-  if(ph!==PHASE){PHASE=ph;renderPhase();speakPhase();}
+  if(ph!==PHASE){PHASE=ph;renderPhase();flyTo(ph);speakPhase();}
   else updateControl(); // 同幕內拖動也逐省更新控制區
 }
-function gotoPhase(i,mid){PHASE=i;$('slider').value=i*SEG+(mid?SEG*0.5:0);const p=PHASES[i];TIME=p.years[0]+(mid?(p.years[1]-p.years[0])/2:0);$('yearlabel').textContent=Math.floor(TIME);renderPhase();speakPhase();}
+function gotoPhase(i,mid){PHASE=i;$('slider').value=i*SEG+(mid?SEG*0.5:0);const p=PHASES[i];TIME=p.years[0]+(mid?(p.years[1]-p.years[0])/2:0);$('yearlabel').textContent=Math.floor(TIME);renderPhase();flyTo(i);speakPhase();}
 function buildPhaseBtns(){
   const c=$('phasebtns');c.innerHTML='';
   PHASES.forEach((p,i)=>{
@@ -714,7 +767,7 @@ function setupPanZoom(){
   const svg=$('mapsvg');let dragging=false,lx=0,ly=0,pinch=null;
   const pt=ev=>{const r=svg.getBoundingClientRect();const sc=Math.min(r.width/1000,r.height/750);
     return{x:(ev.clientX-r.left),y:(ev.clientY-r.top),sc:sc};};
-  svg.addEventListener('wheel',ev=>{ev.preventDefault();
+  svg.addEventListener('wheel',ev=>{ev.preventDefault();clearInterval(camAnim);
     const f=ev.deltaY<0?1.15:1/1.15,nk=Math.min(8,Math.max(1,view.k*f));
     const r=svg.getBoundingClientRect();
     // 以 SVG 使用者座標為中心縮放
@@ -724,7 +777,7 @@ function setupPanZoom(){
     view.x=ux-(ux-view.x)*(nk/view.k);view.y=uy-(uy-view.y)*(nk/view.k);view.k=nk;
     if(view.k===1){view.x=0;view.y=0;}
     applyView();},{passive:false});
-  svg.addEventListener('pointerdown',ev=>{if(ev.isPrimary){dragging=true;lx=ev.clientX;ly=ev.clientY;}});
+  svg.addEventListener('pointerdown',ev=>{if(ev.isPrimary){clearInterval(camAnim);dragging=true;lx=ev.clientX;ly=ev.clientY;}});
   window.addEventListener('pointermove',ev=>{if(dragging&&ev.isPrimary&&view.k>1){
     const r=svg.getBoundingClientRect();const vbScale=Math.min(r.width/1000,r.height/750);
     view.x+=(ev.clientX-lx)/vbScale;view.y+=(ev.clientY-ly)/vbScale;lx=ev.clientX;ly=ev.clientY;applyView();}});
@@ -736,6 +789,35 @@ function setupPanZoom(){
     if(view.k===1){view.x=0;view.y=0;}applyView();}},{passive:false});
   svg.addEventListener('touchend',()=>pinch=null);
   function dist(ev){const a=ev.touches[0],b=ev.touches[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);}
+}
+
+// ===== 每幕鏡頭聚焦（裁掉無戲份的西部，放大事發區域）=====
+// 各幕聚焦框 [西經, 北緯, 東經, 南緯]
+const PHASE_CAMS=[
+[104,42,124.5,20],   // 1 北伐：華南→華北
+[105,33,124.5,20],   // 2 清黨與起義：南方
+[103,43,128,21],     // 3 蘇區與圍剿（含九一八東北）
+[98,40,121,23],      // 4 長征：西南大迂迴
+[101,42,123,29],     // 5 西安事變：西北＋華北
+[100,42,126.5,20],   // 6 抗戰：全國（不含新疆西藏）
+[102,48.5,130.5,21], // 7 內戰初期：東北到華中
+[107,48.5,130.5,30], // 8 三大戰役：北方
+[100,41,124.5,17.5]  // 9 渡江南下
+];
+function flyTo(i){
+  const[w,n,e,s]=PHASE_CAMS[i];
+  const x1=PX(w),y1=PY(n),x2=PX(e),y2=PY(s);
+  const bw=x2-x1,bh=y2-y1;
+  const k=Math.min(Math.min(1000/bw,750/bh)*0.96,3.2);
+  const target={k,x:500-(x1+x2)/2*k,y:375-(y1+y2)/2*k};
+  const from={x:view.x,y:view.y,k:view.k},t0=Date.now(),D=1100;
+  clearInterval(camAnim);
+  camAnim=setInterval(()=>{
+    let p=Math.min(1,(Date.now()-t0)/D);p=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; // ease in-out
+    view.x=from.x+(target.x-from.x)*p;view.y=from.y+(target.y-from.y)*p;view.k=from.k+(target.k-from.k)*p;
+    applyView();
+    if(p>=1)clearInterval(camAnim);
+  },16);
 }
 
 // ===== 事件繫結與啟動 =====
